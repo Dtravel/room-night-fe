@@ -110,39 +110,8 @@ const Booking: React.FC<Props> = (props) => {
   const goToBookingSummary = (reservationID: string) => {
     router.push({ pathname: `/booking-summary/${reservationID}` })
   }
-  const handlePaymentStripe = async (reservationID: string, stripe: any, elements: any) => {
-    try {
-      const { data } = await stripePaymentBooking(reservationID)
-      if (data.success) {
-        if (data?.data?.paymentIntent?.status === 'succeeded') {
-          // manual reservation 0đ
-          goToBookingSummary(reservationID)
-        } else {
-          const cardElement = elements.getElement(CardElement)
-          let result: any = null
-          if (typePayment === TYPE_PAYMENT.CREDIT_CARD) {
-            result = await stripe.confirmCardPayment(data.data.paymentIntent?.client_secret, {
-              payment_method: { card: cardElement },
-            })
-          }
-          if (result.error) {
-            showError(
-              result?.error?.payment_intent?.last_payment_error?.message ||
-              result?.error?.message ||
-              result?.data?.message
-            )
-          } else {
-            goToBookingSummary(reservationID)
-          }
-          setLoading(false)
-        }
-      }
-    } catch (error: any) {
-      setLoading(false)
-      dispatch(setToast({ show: true, message: error?.data?.message }))
-    }
-  }
-  const handleSubmit = async (stripe: any, elements: any) => {
+
+  const handleSubmit = async () => {
     const isCryptoPayment = typePayment === TYPE_PAYMENT.CRYPTO
     const finalPriceDTO: number = Number(
       bookingPrices?.finalPrice?.[isCryptoPayment ? cryptoPayment : selectedCurrency?.type === 'CRYPTO' ? 'USD' : selectedCurrency?.key || 'USD'] || 0
@@ -200,17 +169,7 @@ const Booking: React.FC<Props> = (props) => {
         const res = await createBookingOrder(dataDTO)
         data = res?.data
       }
-      if (!isCryptoPayment && stripe) {
-        if (
-          typePayment === TYPE_PAYMENT.AFFIRM_PAY ||
-          typePayment === TYPE_PAYMENT.AFTER_PAY ||
-          typePayment === TYPE_PAYMENT.KLARNA_PAY
-        ) {
-          setReservationID(data?.data?.reservationId)
-          const billingEl = document.getElementById('billing-detail')
-          if (billingEl) billingEl.click()
-        } else handlePaymentStripe(data?.data?.reservationId, stripe, elements)
-      }
+
       if (isCryptoPayment) {
         const tokenContract = tokenAddress.find((v) => v.symbol === cryptoPayment)
         if (finalPriceDTO > 0) handleBookCrypto(data?.data, tokenContract?.address || '', setLoading, goToBookingSummary)
@@ -409,114 +368,91 @@ const Booking: React.FC<Props> = (props) => {
   const wrongNetwork = chainId !== process.env.NEXT_PUBLIC_SUPPORT_BSC_CHAIN_ID && chainId !== process.env.NEXT_PUBLIC_SUPPORT_ETH_CHAIN_ID
   return (
     <>
-      <Elements
-        stripe={loadStripe(stripeInfo?.stripePublishableKey || '', {
-          locale: 'en',
-          stripeAccount: stripeInfo?.stripeAccount,
-        })}
-      >
-        <ElementsConsumer>
-          {({ stripe, elements }) => (
-            <div className="pt-[24px] pb-0 md:pb-12 flex items-start flex-col md:flex-row">
-              {/*---Left side---*/}
-              <div className="flex flex-col w-full md:w-7/12 md:px-0 md:pr-[48px]">
-                <BookingTitle manualReservationData={manualReservationData} />
-                {isMobile ? (
-                  <BookingHotelInfomation
-                    propertyDetail={propertyDetail}
-                    bookingPrices={bookingPrices}
-                    settingUrl={settingUrl}
-                    isReservationDraft={manualReservationData?.status === RESERVATION_STATUS.DRAFT}
-                  >
-                    {renderInformation()}
-                  </BookingHotelInfomation>
-                ) : (
-                  <>{renderInformation()}</>
-                )}
+      <div className="pt-[24px] pb-0 md:pb-12 flex items-start flex-col md:flex-row">
+        {/*---Left side---*/}
+        <div className="flex flex-col w-full md:w-7/12 md:px-0 md:pr-[48px]">
+          <BookingTitle manualReservationData={manualReservationData} />
+          {isMobile ? (
+            <BookingHotelInfomation
+              propertyDetail={propertyDetail}
+              bookingPrices={bookingPrices}
+              settingUrl={settingUrl}
+              isReservationDraft={manualReservationData?.status === RESERVATION_STATUS.DRAFT}
+            >
+              {renderInformation()}
+            </BookingHotelInfomation>
+          ) : (
+            <>{renderInformation()}</>
+          )}
 
-                <BookingPaymentOption
-                  bookingPrices={bookingPrices}
-                  propertyDetail={propertyDetail}
-                  stripeInfo={stripeInfo}
-                  isReservationDraft={manualReservationData?.status === RESERVATION_STATUS.DRAFT}
-                />
+          <BookingPaymentOption
+            bookingPrices={bookingPrices}
+            propertyDetail={propertyDetail}
+            stripeInfo={stripeInfo}
+            isReservationDraft={manualReservationData?.status === RESERVATION_STATUS.DRAFT}
+          />
 
-                {!isExpiredOrCancelledManualReservation && (
-                  <>
-                    {manualReservationData?.status !== RESERVATION_STATUS.DRAFT && (
-                      <>
-                        {/* {typePayment !== TYPE_PAYMENT.APPLE_PAY && typePayment !== TYPE_PAYMENT.GOOGLE_PAY && ( */}
-                        <BookingContactInformation
-                          handleUpdateGuestInfo={handleUpdateGuestInfo}
-                          setDisabled={setDisabled}
-                          loading={loading}
-                          guestInfo={guestInfo}
-                          superhogStatus={propertyDetail?.superhogStatus}
-                        />
-                        {/* )} */}
-                      </>
-                    )}
-                    <div className="px-4 md:px-0">
-                      <p className="mb-[12px] text-grayscale-900 font-inter-500 text-20-24">Complete booking</p>
-                      <p className="mb-[24px] md:mb-[48px] text-grayscale-600 font-inter-400 text-16-20">
-                        By completing this booking, you agree to the&nbsp;
-                        <a className="underline" href={'/terms-and-conditions'} target={'_blank'} rel="noreferrer">
-                          Terms and Conditions
-                        </a>{' '}
-                        and{' '}
-                        <a className="underline" href={'/privacy-policy'} target={'_blank'} rel="noreferrer">
-                          Privacy Policy
-                        </a>
-                        .
-                      </p>
-
-                      {typePayment === TYPE_PAYMENT.APPLE_PAY || typePayment === TYPE_PAYMENT.GOOGLE_PAY ? (
-                        <GoogleAndApplePay
-                          stripeInfo={stripeInfo}
-                          bookingPrices={bookingPrices}
-                          goToBookingSummary={goToBookingSummary}
-                          dateOfBirth={guestInfo.dateOfBirth ? moment(guestInfo.dateOfBirth, 'MM/DD/YYYY')?.format('YYYY-MM-DD') : ''}
-                          disabled={disabled || disableManualAndAvail}
-                          superhogStatus={propertyDetail?.superhogStatus}
-                        />
-                      ) : (
-                        <div className="flex w-full md:w-auto">
-                          <BookingComplete
-                            handleSubmit={() => handleSubmit(stripe, elements)}
-                            loading={loading}
-                            isLoadingPrice={isLoadingPrice}
-                            disabled={
-                              disabled ||
-                              (typePayment === TYPE_PAYMENT.CREDIT_CARD && !stripeComplete) ||
-                              (typePayment === TYPE_PAYMENT.CRYPTO && (!cryptoPayment || wrongNetwork)) ||
-                              isBNPLDisabled ||
-                              disableManualAndAvail ||
-                              isEmpty(typePayment)
-                            }
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-
-              {/*---Right side---*/}
-              <div className="hidden md:flex md:flex-col w-full md:w-5/12 sticky top-[96px]">
-                <div className="bg-white px-[32px] py-[24px] rounded-[24px] border-[0.5px] border-[#00000026]">
-                  <BookingHotelInfomation
-                    propertyDetail={propertyDetail}
-                    bookingPrices={bookingPrices}
-                    settingUrl={settingUrl}
-                    isReservationDraft={manualReservationData?.status === RESERVATION_STATUS.DRAFT}
+          {!isExpiredOrCancelledManualReservation && (
+            <>
+              {manualReservationData?.status !== RESERVATION_STATUS.DRAFT && (
+                <>
+                  {/* {typePayment !== TYPE_PAYMENT.APPLE_PAY && typePayment !== TYPE_PAYMENT.GOOGLE_PAY && ( */}
+                  <BookingContactInformation
+                    handleUpdateGuestInfo={handleUpdateGuestInfo}
+                    setDisabled={setDisabled}
+                    loading={loading}
+                    guestInfo={guestInfo}
+                    superhogStatus={propertyDetail?.superhogStatus}
+                  />
+                  {/* )} */}
+                </>
+              )}
+              <div className="px-4 md:px-0">
+                <p className="mb-[12px] text-grayscale-900 font-inter-500 text-20-24">Complete booking</p>
+                <p className="mb-[24px] md:mb-[48px] text-grayscale-600 font-inter-400 text-16-20">
+                  By completing this booking, you agree to the&nbsp;
+                  <a className="underline" href={'/terms-and-conditions'} target={'_blank'} rel="noreferrer">
+                    Terms and Conditions
+                  </a>{' '}
+                  and{' '}
+                  <a className="underline" href={'/privacy-policy'} target={'_blank'} rel="noreferrer">
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
+                <div className="flex w-full md:w-auto">
+                  <BookingComplete
+                    handleSubmit={() => handleSubmit()}
+                    loading={loading}
+                    isLoadingPrice={isLoadingPrice}
+                    disabled={
+                      disabled ||
+                      (typePayment === TYPE_PAYMENT.CREDIT_CARD && !stripeComplete) ||
+                      (typePayment === TYPE_PAYMENT.CRYPTO && (!cryptoPayment || wrongNetwork)) ||
+                      isBNPLDisabled ||
+                      disableManualAndAvail ||
+                      isEmpty(typePayment)
+                    }
                   />
                 </div>
-                <BookingSaving bookingPrices={bookingPrices} propertyDetail={propertyDetail} />
               </div>
-            </div>
+            </>
           )}
-        </ElementsConsumer>
-      </Elements>
+        </div>
+
+        {/*---Right side---*/}
+        <div className="hidden md:flex md:flex-col w-full md:w-5/12 sticky top-[96px]">
+          <div className="bg-white px-[32px] py-[24px] rounded-[24px] border-[0.5px] border-[#00000026]">
+            <BookingHotelInfomation
+              propertyDetail={propertyDetail}
+              bookingPrices={bookingPrices}
+              settingUrl={settingUrl}
+              isReservationDraft={manualReservationData?.status === RESERVATION_STATUS.DRAFT}
+            />
+          </div>
+          <BookingSaving bookingPrices={bookingPrices} propertyDetail={propertyDetail} />
+        </div>
+      </div>
       <BillingDetail
         stripeInfo={stripeInfo}
         email={guestInfo?.email || ''}

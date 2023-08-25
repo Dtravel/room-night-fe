@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { useStripe } from '@stripe/react-stripe-js'
 import StripeBooking from '@dtravel/components/stripeBooking/StripeBooking'
 import { useAppSelector, useAppDispatch } from '@dtravel/redux/hooks'
 import BookingCrypto from './BookingCrypto'
@@ -9,11 +8,6 @@ import ConnectWallet from '@dtravel/components/connectWallet/ConnectWallet'
 import { setCryptoPayment, setTypePayment } from '@dtravel/redux/slices/common'
 import { isEmpty } from '@dtravel/utils/common'
 import credit_card_payment from '@dtravel/assets/icons/credit_card_payment.svg'
-import ic_apple_pay from '@dtravel/assets/icons/ic_apple_pay.svg'
-import ic_google_pay from '@dtravel/assets/icons/ic_google_pay.svg'
-import ic_affirm from '@dtravel/assets/icons/ic_affirm.svg'
-import ic_afterPay from '@dtravel/assets/icons/ic_afterPay.svg'
-import ic_klarna from '@dtravel/assets/icons/ic_klarna.svg'
 import DtravelPrice from '../common/DtravelPrice'
 import { TYPE_PAYMENT } from '@dtravel/helpers/constants/constants'
 import { StripeInfoProps, TypePayment } from '@dtravel/helpers/interfaces'
@@ -34,7 +28,6 @@ const BookingCollapse: React.FC<Props> = ({
   isReservationDraft,
 }) => {
   const { accounts, typePayment, selectedCurrency } = useAppSelector((state) => state.common)
-  const stripe = useStripe()
   const dispatch = useAppDispatch()
   const [paymentRequest, setPaymentRequest] = useState<GoogleApplePayEnableProps>({})
   const [firstCheckPayment, setFirstCheckPayment] = useState<any>({ affirm: false, after: false, klarna: false })
@@ -88,22 +81,6 @@ const BookingCollapse: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [selectedCurrency?.key])
 
-  useEffect(() => {
-    if (stripe) {
-      const pr = stripe.paymentRequest({
-        country: 'US',
-        currency: 'usd',
-        total: { label: 'Total', amount: 0 },
-        requestPayerName: true,
-        requestPayerEmail: true,
-        requestPayerPhone: true,
-      })
-      // Check the availability of the Payment Request API.
-      pr.canMakePayment().then((result) => {
-        if (result) setPaymentRequest(result)
-      })
-    }
-  }, [stripe])
   const renderImageIcon = (icon: any) => {
     return (
       <span className="flex items-center">
