@@ -23,30 +23,6 @@ export default async function serverProps(context: any) {
   let landingSetting: any = null;
   let err: any = null;
 
-  // if (hostDomain !== publicSiteDomain) {
-  //   if (isIP(hostDomain)) err = { statusCode: 404 };
-  //   else {
-  //     try {
-  //       const domain = converHostDomain(hostDomain);
-  //       // const res: any = await getDomainInfo({ domain })
-  //       const res: any = await axios
-  //         .get(
-  //           process.env.NEXT_PUBLIC_INTERNAL_ACCOUNT_API_URL + "/v1/user/info",
-  //           {
-  //             timeout: 5000,
-  //             headers: { "User-Agent": "Dtravel-Internal/guest" },
-  //             params: { domain },
-  //           }
-  //         )
-  //         .then((response) => response.data);
-  //       if (res?.data?.id) userId = res?.data?.id;
-  //       else err = { statusCode: 404 };
-  //     } catch (error) {
-  //       err = { statusCode: 404 };
-  //     }
-  //   }
-  // }
-
   if (userId || hostId) {
     try {
       const [resSettingUrl, resBusinessInfor, resLandingSetting] =
