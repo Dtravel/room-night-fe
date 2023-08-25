@@ -115,7 +115,7 @@ const PriceCard: React.FC<Props> = ({
   // redirect to booking page
   const handleBook = () => {
     router.push({
-      pathname: propertyId ? `/[hostId]/booking/[propertyId]` : `/booking/[propertyId]`,
+      pathname: `/booking/[propertyId]`,
       query: {
         ...getParamsQuery(),
         guests: adults + children + infants,
@@ -228,9 +228,8 @@ const PriceCard: React.FC<Props> = ({
               >
                 <IconCalendar color={color} />
                 <span
-                  className={`font-inter-500 text-14-18 ${
-                    checkIn && checkOut ? 'text-neutral-900' : 'text-neutral-600'
-                  }`}
+                  className={`font-inter-500 text-14-18 ${checkIn && checkOut ? 'text-neutral-900' : 'text-neutral-600'
+                    }`}
                 >
                   {checkIn && checkOut ? showDateRange(checkIn, checkOut) : 'Dates'}
                 </span>
