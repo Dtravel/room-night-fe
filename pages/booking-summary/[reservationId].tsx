@@ -76,40 +76,13 @@ export async function getServerSideProps(context: any) {
   }
   const hostID = resultProps?.propertyDetail?.hostId
   const { payment_intent_client_secret, payment_intent } = context.query
-  if (payment_intent_client_secret || payment_intent) {
-    // redirect from stripe
-    return {
-      redirect: {
-        permanent: true,
-        destination: `https://${hostDomain}/booking-summary/${reservationId}`,
-      },
-    }
-  }
+
   if (hostID) {
     const resBusinessInfor: any = await getBusinessInfor(hostID?.toLowerCase())
 
     resultProps = { ...resultProps, businessInfor: resBusinessInfor.data }
     const resSettingUrl: any = await getSettingUrl(hostID)
     settingUrl = !isEmpty(resSettingUrl.data) && (resSettingUrl.data || []).find((v: SettingUrlProps) => v.isPrimary)
-    if (settingUrl && checkRedirectActived(settingUrl, hostDomain)) {
-      // support case change custom domain
-      const { domain } = genDomain(context, settingUrl)
-      return {
-        redirect: {
-          permanent: true,
-          destination: `${domain}/booking-summary/${reservationId}`,
-        },
-      }
-    }
-    if (!settingUrl?.customId && hostDomain !== publicSiteDomain) {
-      // support case remove custom domain, redirect to default url
-      return {
-        redirect: {
-          permanent: true,
-          destination: `${process.env.NEXT_PUBLIC_SITE_URL}/booking-summary/${reservationId}`,
-        },
-      }
-    }
   }
 
   return { props: { ...resultProps, settingUrl } }

@@ -62,18 +62,7 @@ export async function getServerSideProps(context: any) {
   let error = dataServerProps?.error
   if (!dataServerProps?.userId) error = { statusCode: 404 }
   const { req } = context
-  const hostDomain = req?.headers?.host
-  const { settingUrl } = dataServerProps
-  if (settingUrl && checkRedirectActived(settingUrl, hostDomain)) {
-    // support case change custom domain
-    const { domain, paramsSearch } = genDomain(context, settingUrl)
-    return {
-      redirect: {
-        permanent: true,
-        destination: `${domain}/property${paramsSearch ? `?${paramsSearch}` : ''}`,
-      },
-    }
-  }
+
   return {
     props: { ...dataServerProps, error }
   }

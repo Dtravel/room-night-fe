@@ -143,15 +143,6 @@ const BookingCollapse: React.FC<Props> = ({
   const finalPriceCurrency = Number(bookingPrices?.finalPrice?.[currencyDisplay])
 
   const paymentShowData: Array<any> = [
-    // fiat payment
-    {
-      type: TYPE_PAYMENT.CREDIT_CARD,
-      icon: <Image src={credit_card_payment} alt="" width={173} height={20} />,
-      isShow: isStripePayment && propertyDetail?.fiatPaymentEnabled,
-      isActived: isPaymentCreditCard,
-      title: 'Credit/Debit card',
-      subTitle: renderCreditCardFees('in credit/debit card fees'),
-    },
     // crypto payment
     {
       type: TYPE_PAYMENT.CRYPTO,
@@ -166,60 +157,6 @@ const BookingCollapse: React.FC<Props> = ({
       isActived: isPaymentCrypto,
       title: 'Crypto',
       subTitle: 'No fees',
-    },
-    // apple pay
-    {
-      type: TYPE_PAYMENT.APPLE_PAY,
-      icon: <Image src={ic_apple_pay} alt="" width={20} height={20} />,
-      isShow: paymentRequest?.applePay,
-      isActived: isPaymentApplePay,
-      title: 'Apple Pay',
-      subTitle: renderCreditCardFees(),
-    },
-    // google pay
-    {
-      type: TYPE_PAYMENT.GOOGLE_PAY,
-      icon: <Image src={ic_google_pay} alt="" width={20} height={20} />,
-      isShow: paymentRequest?.googlePay,
-      isActived: isPaymentGooglePay,
-      title: 'Google Pay',
-      subTitle: renderCreditCardFees(),
-    },
-    // affirm pay
-    {
-      type: TYPE_PAYMENT.AFFIRM_PAY,
-      icon: <Image src={ic_affirm} alt="" width={20} height={20} />,
-      isShow: firstCheckPayment.affirm,
-      isCurrencyDisabled: !affirmPayCurrencyEnable,
-      isMinDisabled: affirmPayCurrencyEnable && finalPriceCurrency < 50,
-      isMaxDisabled: affirmPayCurrencyEnable && finalPriceCurrency > 30000,
-      isActived: isPaymentAffirmPay,
-      title: 'Affirm',
-      subTitle: 'As Low As 0% APR',
-    },
-    // after pay
-    {
-      type: TYPE_PAYMENT.AFTER_PAY,
-      icon: <Image src={ic_afterPay} alt="" width={20} height={20} />,
-      isShow: firstCheckPayment.after,
-      isCurrencyDisabled: !afterPayCurrencyEnable,
-      isMinDisabled: afterPayCurrencyEnable && finalPriceCurrency < 1,
-      isMaxDisabled:
-        afterPayCurrencyEnable &&
-        finalPriceCurrency > (selectedCurrency?.key === 'GBP' || selectedCurrency?.key === 'EUR' ? 1000 : 2000),
-      isActived: isPaymentAfterPay,
-      title: 'Afterpay/Clearpay',
-      subTitle: '0% interest up to 6 months',
-    },
-    // klarna pay
-    {
-      type: TYPE_PAYMENT.KLARNA_PAY,
-      icon: <Image src={ic_klarna} alt="" width={20} height={20} />,
-      isShow: firstCheckPayment.klarna,
-      isCurrencyDisabled: !klarnaPayCurrencyEnable,
-      isActived: isPaymentKlarnaPay,
-      title: 'Klarna',
-      subTitle: 'No interest',
     },
   ]
   const paymentShowDisabledMin = paymentShowData.filter((it: any) => it.isMinDisabled && it.isShow)

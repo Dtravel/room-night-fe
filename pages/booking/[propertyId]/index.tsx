@@ -54,41 +54,7 @@ export async function getServerSideProps(context: any) {
   const { userId, settingUrl } = dataServerProps
   const { req } = context
   const hostDomain = req?.headers?.host
-  if (reservationId) {
-    try {
-      const res: any = await getDetailBooking(reservationId as string)
-      if (res?.data?.success) {
-        const manualData = res?.data?.data
-        if (
-          !(
-            manualData?.status === RESERVATION_STATUS.EXPIRED ||
-            manualData?.status === RESERVATION_STATUS.INQUIRY ||
-            manualData?.status === RESERVATION_STATUS.MANUAL_CANCELLED ||
-            manualData?.status === RESERVATION_STATUS.DRAFT
-          )
-        ) {
-          return {
-            redirect: {
-              permanent: true,
-              destination: `https://${hostDomain}/booking-summary/${reservationId}`,
-            },
-          }
-        }
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  if (settingUrl && checkRedirectActived(settingUrl, hostDomain)) {
-    // support case change custom domain
-    const { domain, paramsSearch } = genDomain(context, settingUrl)
-    return {
-      redirect: {
-        permanent: true,
-        destination: `${domain}/booking/${propertyId}${paramsSearch ? `?${paramsSearch}` : ''}`,
-      },
-    }
-  }
+
   let resultProps: BookingProps = { ...dataServerProps, propertyDetail: null }
   try {
     const res: any = await api({

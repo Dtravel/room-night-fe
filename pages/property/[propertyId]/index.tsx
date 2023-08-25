@@ -63,29 +63,10 @@ export async function getServerSideProps(context: any) {
   const { req } = context
   const { propertyId, ...otherQuery } = context.query
   const hostDomain = req?.headers?.host
-  if (propertyId && isUserId(propertyId)) {
-    delete otherQuery?.view
-    const paramsSearch = queryString.stringify({ ...otherQuery })
 
-    return {
-      redirect: {
-        permanent: true,
-        destination: `https://${hostDomain}/${propertyId}/property${paramsSearch ? `?${paramsSearch}` : ''}`,
-      },
-    }
-  }
   const dataServerProps = { ...(await serverProps(context)) }
   const { userId, settingUrl } = dataServerProps
-  if (settingUrl && checkRedirectActived(settingUrl, hostDomain)) {
-    // support case change custom domain
-    const { domain, paramsSearch } = genDomain(context, settingUrl)
-    return {
-      redirect: {
-        permanent: true,
-        destination: `${domain}/property/${propertyId}${paramsSearch ? `?${paramsSearch}` : ''}`,
-      },
-    }
-  }
+
   try {
     const res: any = await axios
       .get(process.env.NEXT_PUBLIC_INTERNAL_LISTING_API_URL + '/v2/property/' + userId + '/' + propertyId, {
