@@ -9,5 +9,6 @@ COPY cert ./cert
 COPY loader.ts ./loader.ts
 COPY node_modules ./node_modules
 COPY package.json .
+COPY .env.staging .
 EXPOSE 80
 CMD [ "yarn", "start" ]
