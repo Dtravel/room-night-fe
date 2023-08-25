@@ -112,3 +112,13 @@ export const getRoomNightOperator = () => {
     url: `/room-night/operator`,
   }).then((res) => res.data);
 };
+export const updateTransactionHash = (
+  reservationId: string,
+  transactionHash: string
+) => {
+  return api({
+    method: "post",
+    url: `/room-night/reservation/${reservationId}`,
+    data: { transactionHash },
+  }).then((res) => res.data);
+};

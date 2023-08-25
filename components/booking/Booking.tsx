@@ -79,10 +79,8 @@ const Booking: React.FC<Props> = (props) => {
   const [guestInfo, setGuestInfo] = useState<GuestInfoProps & SuperhogInfoProps>({})
   const [manualReservationData, setManualReservationData] = useState<any>(null)
   const [loadingAddons, setLoadingAddOns] = useState<number>(-1)
-  const [reservationID, setReservationID] = useState<string>('')
 
   const isSuperhogEnabled = propertyDetail?.superhogStatus === 'kyg' || propertyDetail?.superhogStatus === 'kyg_damage'
-  console.log('propertyDetail', propertyDetail)
   useEffect(() => {
     async function fetchRates() {
       try {
@@ -107,17 +105,7 @@ const Booking: React.FC<Props> = (props) => {
   const goToBookingSummary = (reservationID: string) => {
     router.push({ pathname: `/booking-summary/${reservationID}` })
   }
-  const handleBookWithCrypto = async (
-    bookingData: any,
-    tokenAddress: string,
-    setLoading: any,
-    goToBookingSummary: any
-  ) => {
-    try {
-      const res = await getRoomNightOperator()
-      console.log('test', res.data)
-    } catch (error) { }
-  }
+
   const handleSubmit = async () => {
     const isCryptoPayment = typePayment === TYPE_PAYMENT.CRYPTO
     const finalPriceDTO: number = Number(
@@ -125,8 +113,9 @@ const Booking: React.FC<Props> = (props) => {
     )
     try {
       setLoading(true)
+      let OPSWalletAddress: string = ''
       const res = await getRoomNightOperator()
-      console.log('test', res.data)
+      if (!isEmpty(res.data)) OPSWalletAddress = res.data
       let guestInfoDTO = {
         ...guestInfo,
         name: `${guestInfo.firstName} ${guestInfo.lastName}`
@@ -175,17 +164,15 @@ const Booking: React.FC<Props> = (props) => {
         const res = await updateManualBookingOrder(reservationId as string, manualDataDTO)
         data = res?.data
       } else {
-        // const res = await createBookingOrder(dataDTO)
+        const res = await createBookingOrder(dataDTO)
         data = res?.data
       }
-
-      // if (isCryptoPayment) {
-      //   const tokenContract = tokenAddress.find((v) => v.symbol === cryptoPayment)
-      //   if (finalPriceDTO > 0) {
-      //     // handleBookCrypto(data?.data, tokenContract?.address || '', setLoading, goToBookingSummary)
-      //     handleBookWithCrypto(data?.data, tokenContract?.address || '', setLoading, goToBookingSummary)
-      //   } else goToBookingSummary(data?.data?.reservationId)
-      // }
+      if (isCryptoPayment) {
+        const tokenContract = tokenAddress.find((v) => v.symbol === cryptoPayment)
+        if (finalPriceDTO > 0) {
+          handleBookCrypto(data?.data, tokenContract?.address || '', OPSWalletAddress, setLoading, goToBookingSummary)
+        } else goToBookingSummary(data?.data?.reservationId)
+      }
     } catch (error: any) {
       setLoading(false)
       showError(

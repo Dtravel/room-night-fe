@@ -62,7 +62,6 @@ const PriceBreakDown: React.FC<Props> = ({
   if (typePayment === TYPE_PAYMENT.CRYPTO && isReservationDraft) {
     currencyPayment = 'USDT' // if host select type crypto => set currency = USDT
   }
-  console.log('data', data)
   const currencyDisplay = isSummaryPage
     ? propertyDetail?.currency || selectedCurrency?.key || 'USD'
     : selectedCurrency?.key || 'USD'
