@@ -1,14 +1,15 @@
-import api from './api'
-import { ReservationAvailabilityData } from '@dtravel/helpers/interfaces/property'
-import { ReviewParamsProps } from '../interfaces'
+import api from "./api";
+import { ReservationAvailabilityData } from "@dtravel/helpers/interfaces/property";
+import { ReviewParamsProps } from "../interfaces";
+import axios from "axios";
 
 export const getPropertyDetail = (hostId: string, propertyId: string) => {
   const options: any = {
-    method: 'get',
-    url: '/listing-service/v2/property/' + hostId + '/' + propertyId,
-  }
-  return api(options).then((res) => res.data)
-}
+    method: "get",
+    url: "/listing-service/v2/property/" + hostId + "/" + propertyId,
+  };
+  return api(options).then((res) => res.data);
+};
 
 /**
  * Returns array availability for each day.
@@ -19,21 +20,26 @@ export const getPropertyDetail = (hostId: string, propertyId: string) => {
  * @param {string} endDate Date to, format YYYY-MM-DD.
  * @return {Promise} array availability for each day.
  */
-export const getCalendar = (hostAddress: string, listingId: string, startDate: string, endDate: string) => {
+export const getCalendar = (
+  hostAddress: string,
+  listingId: string,
+  startDate: string,
+  endDate: string
+) => {
   return api({
-    method: 'get',
+    method: "get",
     // url: '/integration-service/calendar',
-    url: '/listing-service/calendar',
+    url: "/listing-service/calendar",
     params: { hostAddress, listingId, startDate, endDate },
   })
     .then((res) => res.data)
     .then((res) => {
       if (!res.success) {
-        throw res.error
+        throw res.error;
       }
-      return res
-    })
-}
+      return res;
+    });
+};
 
 /**
  * Returns price breakdown.
@@ -43,83 +49,116 @@ export const getCalendar = (hostAddress: string, listingId: string, startDate: s
  */
 export const getPriceReservation = (bodyData: ReservationAvailabilityData) => {
   return api({
-    method: 'post',
+    method: "post",
     // url: '/reservation-service/reservation/availability',
-    url: '/listing-service/calendar/price',
+    url: "/listing-service/calendar/price",
     data: bodyData,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 
 //https://api.dataismist.com/listing-service/v2/calendar/price
-export const getPriceReservationV2 = (bodyData: ReservationAvailabilityData) => {
+export const getPriceReservationV2 = (
+  bodyData: ReservationAvailabilityData
+) => {
   return api({
-    method: 'post',
-    url: '/listing-service/v2/calendar/price',
+    method: "post",
+    url: "/listing-service/v2/calendar/price",
     data: bodyData,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 
-export const addPageView = ({ propertyId, walletId }: { propertyId: string; walletId: string }) => {
+export const addPageView = ({
+  propertyId,
+  walletId,
+}: {
+  propertyId: string;
+  walletId: string;
+}) => {
   return api({
-    method: 'get',
-    url: '/listing-service/v1/property',
+    method: "get",
+    url: "/listing-service/v1/property",
     params: { propertyId, walletId },
-  }).then((res) => res.data)
-}
-export const getConvertCurrency = (value: number | string, base: string, targets = 'usd') => {
+  }).then((res) => res.data);
+};
+export const getConvertCurrency = (
+  value: number | string,
+  base: string,
+  targets = "usd"
+) => {
   return api({
-    method: 'get',
-    url: '/paygate-service/currency/convert',
+    method: "get",
+    url: "/paygate-service/currency/convert",
     params: { value, base, targets },
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 export const getRateCurrency = () => {
   return api({
-    method: 'get',
-    url: 'paygate-service/currency/rates',
-  }).then((res) => res.data)
-}
+    method: "get",
+    url: "paygate-service/currency/rates",
+  }).then((res) => res.data);
+};
 export const getMerchantLanding = (id: string) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/account-service/v1/user/landing-page/info?id=${id}`,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 export const getLocationList = (hostID: string) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/listing-service/v1/property/locations?host=${hostID}`,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 export const getFeatureListing = (hostID: string) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/listing-service/v2/calendar/get-feature-listing?hostId=${hostID}&order=desc`,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 export const getPropertyReview = (pmsListingId: string) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/integration-service/listings/reviews?pmsListingId=${pmsListingId}`,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 export const getHostReview = (userId: string) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/integration-service/listings/reviewsByRules/${userId}`,
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
 export const getReviews = (params: ReviewParamsProps) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/integration-service/listings/reviews`,
     params,
-  }).then((res) => res.data)
-}
-export const getCancelPolicy = (propertyId: string | number, currency: string) => {
+  }).then((res) => res.data);
+};
+export const getCancelPolicy = (
+  propertyId: string | number,
+  currency: string
+) => {
   return api({
-    method: 'get',
+    method: "get",
     url: `/listing-service/cancellation/policies/${propertyId}`,
     params: { currency },
-  }).then((res) => res.data)
-}
+  }).then((res) => res.data);
+};
+export const getHistoryTransactionBSC = (propertyContract: string) => {
+  return axios
+    .get(`https://api-testnet.bscscan.com/api`, {
+      timeout: 5000,
+      params: {
+        module: "account",
+        action: "txlist",
+        startblock: 0,
+        endblock: 99999999,
+        page: 1,
+        offset: 10,
+        sort: "desc",
+        address: propertyContract,
+        apikey: process.env.NEXT_PUBLIC_BSC_KEY_TOKEN,
+      },
+    })
+    .then((res: any) => res.data);
+};

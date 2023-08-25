@@ -1,60 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'home';
-@import 'privacyPolicy';
-@import '~slick-carousel/slick/slick.css';
-@import '~slick-carousel/slick/slick-theme.css';
+@import "home";
+@import "privacyPolicy";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 // font Maison Neue
 @font-face {
   font-family: Maison Neue Light;
   font-weight: 300;
-  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Light.woff2');
+  src: url("https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Light.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Maison Neue Regular;
   font-weight: 400;
-  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Book.woff2');
+  src: url("https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Book.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Maison Neue Medium;
   font-weight: 500;
-  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Medium.woff2');
+  src: url("https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Medium.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Maison Neue Demi;
   font-weight: 600;
-  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Demi.woff2');
+  src: url("https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Demi.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Maison Neue Bold;
   font-weight: 700;
-  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Bold.woff2');
+  src: url("https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Bold.woff2");
   font-display: swap;
 }
 // font Monument Extended
 @font-face {
   font-family: Monument Extended Regular;
   font-weight: 400;
-  src: url('https://static.dtravel.com/fonts/Monument/MonumentExtended-Regular.woff2');
+  src: url("https://static.dtravel.com/fonts/Monument/MonumentExtended-Regular.woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: Monument Extended Bold;
   font-weight: 700;
-  src: url('https://static.dtravel.com/fonts/Monument-Extended/MonumentExtended-Bold.woff2');
+  src: url("https://static.dtravel.com/fonts/Monument-Extended/MonumentExtended-Bold.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: PPMonument Extended Bold;
   font-weight: 700;
-  src: url('https://static.dtravel.com/fonts/MonumentExtended-Bold/PPMonumentExtended-Bold.woff2');
+  src: url("https://static.dtravel.com/fonts/MonumentExtended-Bold/PPMonumentExtended-Bold.woff2");
   font-display: swap;
 }
 
@@ -62,7 +62,7 @@
 @font-face {
   font-family: Editorial New Regular;
   font-weight: 400;
-  src: url('https://static.dtravel.com/fonts/Editorial-New/EditorialNew-Regular.woff2');
+  src: url("https://static.dtravel.com/fonts/Editorial-New/EditorialNew-Regular.woff2");
   font-display: swap;
 }
 
@@ -70,55 +70,55 @@
 @font-face {
   font-family: Inter Black;
   font-weight: 900;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-Black.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-Black.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter Bold;
   font-weight: 800;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-Bold.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-Bold.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter ExtraBold;
   font-weight: 700;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-ExtraBold.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-ExtraBold.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter SemiBold;
   font-weight: 600;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-SemiBold.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-SemiBold.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter Medium;
   font-weight: 500;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-Medium.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-Medium.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter Regular;
   font-weight: 400;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-Regular.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-Regular.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter Light;
   font-weight: 300;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-Light.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-Light.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter ExtraLight;
   font-weight: 200;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-ExtraLight.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-ExtraLight.woff2");
   font-display: swap;
 }
 @font-face {
   font-family: Inter Thin;
   font-weight: 100;
-  src: url('https://static.dtravel.com/fonts/Inter/Inter-Thin.woff2');
+  src: url("https://static.dtravel.com/fonts/Inter/Inter-Thin.woff2");
   font-display: swap;
 }
 
@@ -174,7 +174,12 @@ body {
 .webkit-box-orient {
   -webkit-box-orient: vertical;
 }
-
+.line-clamp-1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
 //.PhoneInputCountrySelect {
 //  &:focus {
 //    .PhoneInputCountryIcon--border {
@@ -287,7 +292,7 @@ body {
     transition: all 1s;
   }
   .child::before {
-    content: '';
+    content: "";
     opacity: 0;
     transition: all 1s ease;
     height: 100%;
@@ -343,7 +348,8 @@ body {
   }
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
     margin: 24px 24px 0 0;
-    box-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.04), 0px 8px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.04),
+      0px 8px 16px rgba(0, 0, 0, 0.04);
   }
   .mapboxgl-ctrl-zoom-in {
     width: 40px;
@@ -365,10 +371,10 @@ body {
     border-top: 1px solid #ebe9e9;
   }
   .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
-    background-image: url('../assets/icons/ic_add_plus.svg');
+    background-image: url("../assets/icons/ic_add_plus.svg");
   }
   .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
-    background-image: url('../assets/icons/ic_remove_minus.svg');
+    background-image: url("../assets/icons/ic_remove_minus.svg");
   }
 }
 :root {
@@ -545,7 +551,7 @@ body {
 
   .slick-prev:before,
   .slick-next:before {
-    content: '';
+    content: "";
   }
   &:hover {
     .slick-prev,
@@ -651,7 +657,7 @@ body {
       left: 0;
       width: 8px;
       height: 8px;
-      content: '•';
+      content: "•";
       text-align: center;
       opacity: 0.6;
       color: white;
@@ -680,7 +686,7 @@ body {
 .custom-ul {
   list-style: none;
   li::before {
-    content: '\2022';
+    content: "\2022";
     color: #6a6a68;
     display: inline;
     margin: 0 12px;

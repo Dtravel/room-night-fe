@@ -7,7 +7,7 @@ import HotelRules from '@dtravel/components/property-detail/HotelRules'
 import PriceCard from '@dtravel/components/property-detail/PriceCard'
 import SpaceDetails from '@dtravel/components/property-detail/SpaceDetails'
 import YourHost from '@dtravel/components/property-detail/YourHost'
-import { addPageView, getPriceReservationV2, getPropertyDetail } from '@dtravel/helpers/api/property'
+import { addPageView, getHistoryTransactionBSC, getPriceReservationV2, getPropertyDetail } from '@dtravel/helpers/api/property'
 import { PriceReservation, PropertyInfo, ReservationAvailabilityData } from '@dtravel/helpers/interfaces/property'
 import { useAppSelector } from '@dtravel/redux/hooks'
 import { setLoading, setSelectedCurrency, setToastError } from '@dtravel/redux/slices/common'
@@ -28,6 +28,9 @@ import { convertCurrency } from '@dtravel/helpers/api/common'
 import axios from 'axios'
 import PropertyReview from './PropertyReview'
 import { isEmpty } from '@dtravel/utils/common'
+import { isBSC } from '@dtravel/helpers/utils/common'
+import { getHistoryTransaction } from '@dtravel/helpers/utils/ether'
+import BookTransaction from './BookTransaction'
 
 interface Props {
   data: PropertyInfo
@@ -46,8 +49,8 @@ const PropertyDetail: NextPage<Props> = ({ data, hostId, propertyId }) => {
   const [priceData, setPriceData] = useState<PriceReservation | null>(null)
   const [avgPrice, setAvgPrice] = useState<number>(0)
   const [avgPriceRoot, setAvgPriceRoot] = useState<number>(0)
+  const propertyContractData: any = (data?.propertyContracts || []).find((v: any) => !isEmpty(v.propertyContract) && isBSC(v.chainId))
 
-  // set pmsPropertyId
   useEffect(() => {
     setPmsPropertyId(data ? data.id.toString() : '')
   }, [data])
@@ -226,6 +229,9 @@ const PropertyDetail: NextPage<Props> = ({ data, hostId, propertyId }) => {
 
           <div id={'reviews'}>
             <PropertyReview pmsPropertyId={data?.pmsPropertyId} userId={data?.userId} />
+          </div>
+          <div id={'transactions'}>
+            <BookTransaction propertyContract={propertyContractData?.propertyContract || ''} />
           </div>
           <div id={'policies'}>
             <HotelCancelPolicy

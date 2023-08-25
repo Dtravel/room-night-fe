@@ -276,3 +276,7 @@ export const cancelBookingSmartContract = async (
   // console.log('cancel info', bookingId, guestWallet, propertyContract)
   return contract.cancel(Number(bookingId));
 };
+export const getHistoryTransaction = async (propertyContract: string) => {
+  const provider = new ethers.providers.Web3Provider((window as any)?.ethereum);
+  // return await provider.send("eth_getBlockByNumber", ["pending", false/true]);
+};
