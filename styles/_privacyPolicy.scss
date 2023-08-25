@@ -1,0 +1,53 @@
+.privacyPolicy {
+  h1,
+  h2 {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 2.25rem;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  p,
+  li {
+    padding-top: 1rem;
+  }
+  h2,
+  h3 {
+    padding-top: 1.5rem;
+    line-height: 1.5rem;
+  }
+  ul li {
+    list-style-type: disc;
+  }
+  ul {
+    padding-left: 4rem;
+  }
+  a {
+    color: #d4383d;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: PPMonument Extended Bold;
+    strong {
+      font-family: PPMonument Extended Bold;
+    }
+  }
+
+  p {
+    font-family: Maison Neue Light;
+  }
+  strong {
+    font-family: Maison Neue Bold;
+  }
+  .page-container {
+    background-color: #eeeeee;
+  }
+  .header a,
+  li a {
+    font-family: Maison Neue Light;
+  }
+}

@@ -1,0 +1,694 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'home';
+@import 'privacyPolicy';
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+// font Maison Neue
+@font-face {
+  font-family: Maison Neue Light;
+  font-weight: 300;
+  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Light.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Maison Neue Regular;
+  font-weight: 400;
+  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Book.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Maison Neue Medium;
+  font-weight: 500;
+  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Medium.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Maison Neue Demi;
+  font-weight: 600;
+  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Demi.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Maison Neue Bold;
+  font-weight: 700;
+  src: url('https://static.dtravel.com/fonts/Maison-Neue/MaisonNeue-Bold.woff2');
+  font-display: swap;
+}
+// font Monument Extended
+@font-face {
+  font-family: Monument Extended Regular;
+  font-weight: 400;
+  src: url('https://static.dtravel.com/fonts/Monument/MonumentExtended-Regular.woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Monument Extended Bold;
+  font-weight: 700;
+  src: url('https://static.dtravel.com/fonts/Monument-Extended/MonumentExtended-Bold.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: PPMonument Extended Bold;
+  font-weight: 700;
+  src: url('https://static.dtravel.com/fonts/MonumentExtended-Bold/PPMonumentExtended-Bold.woff2');
+  font-display: swap;
+}
+
+// font Editorial
+@font-face {
+  font-family: Editorial New Regular;
+  font-weight: 400;
+  src: url('https://static.dtravel.com/fonts/Editorial-New/EditorialNew-Regular.woff2');
+  font-display: swap;
+}
+
+// font Inter
+@font-face {
+  font-family: Inter Black;
+  font-weight: 900;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-Black.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter Bold;
+  font-weight: 800;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-Bold.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter ExtraBold;
+  font-weight: 700;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-ExtraBold.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter SemiBold;
+  font-weight: 600;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-SemiBold.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter Medium;
+  font-weight: 500;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-Medium.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter Regular;
+  font-weight: 400;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-Regular.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter Light;
+  font-weight: 300;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-Light.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter ExtraLight;
+  font-weight: 200;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-ExtraLight.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter Thin;
+  font-weight: 100;
+  src: url('https://static.dtravel.com/fonts/Inter/Inter-Thin.woff2');
+  font-display: swap;
+}
+
+html,
+body {
+  background-color: #fff;
+  font-family: Inter Regular;
+  color: #32302d;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-text-size-adjust: 100%;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0;
+  }
+  scroll-behavior: smooth;
+}
+.letter-spacing-001em {
+  letter-spacing: -0.01em;
+}
+.letter-spacing-02em {
+  letter-spacing: 0.2em;
+}
+.letter-spacing-002em {
+  letter-spacing: 0.02em;
+}
+.letter-spacing-004em {
+  letter-spacing: 0.04em;
+}
+.mobile-hidden {
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+.tablet-hidden {
+  @media only screen and (min-width: 600px) and (max-width: 959px) {
+    display: none;
+  }
+}
+.pc-hidden {
+  @media only screen and (min-width: 960px) {
+    display: none;
+  }
+}
+.webkit-line-clamp-4 {
+  -webkit-line-clamp: 4;
+}
+.webkit-box {
+  display: -webkit-box;
+}
+.webkit-box-orient {
+  -webkit-box-orient: vertical;
+}
+
+//.PhoneInputCountrySelect {
+//  &:focus {
+//    .PhoneInputCountryIcon--border {
+//      box-shadow: 3px 3px red !important;
+//    }
+//  }
+//}
+.PhoneInputCountrySelectArrow {
+  opacity: 1 !important;
+  margin-left: 8px !important;
+  margin-top: -3px;
+}
+.PhoneInputCountryFlag-height {
+  height: 24px;
+}
+.PhoneInputCountryIcon--border {
+  // box-shadow: none !important;
+  // border-radius: 4px !important;
+}
+.PhoneInputCountryIcon {
+  // height: 24px !important;
+  background-color: transparent !important;
+}
+.PhoneInputCountry {
+  padding: 16px;
+}
+.PhoneInputInput {
+  border-left: 0.5px solid #00000026;
+  outline: none;
+  padding: 32px 16px 12px 68px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0f0f0f;
+  font-family: Inter Medium;
+  font-weight: 500;
+  &::placeholder {
+    color: #6a6a68;
+    opacity: 1;
+  }
+
+  &::-ms-input-placeholder {
+    color: #6a6a68;
+  }
+
+  &::-ms-input-placeholder {
+    color: #6a6a68;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+}
+// custom google map
+.gmnoprint,
+.gm-control-active,
+.gm-fullscreen-control {
+  display: none;
+}
+.radio-item-box {
+  &:hover {
+    .radio-item {
+      border-color: #32302d;
+    }
+    .radio-checked {
+      border-color: black;
+    }
+  }
+}
+
+.contact-us-backdrop-filter {
+  -webkit-backdrop-filter: blur(12.5px);
+  backdrop-filter: blur(12.5px);
+}
+
+.hidden-scroll-bar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0;
+  }
+  scroll-behavior: smooth;
+}
+.customScrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+
+/*
+  Hero image in property detail
+ */
+.heroImage {
+  //height: 540px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  transform: translateZ(0);
+  @media only screen and (max-width: 767px) {
+    height: 260px;
+    margin-top: 0;
+    border-radius: 0;
+  }
+  .child {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+  }
+  .child::before {
+    content: '';
+    opacity: 0;
+    transition: all 1s ease;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .showAll {
+    display: none;
+  }
+
+  &:hover {
+    .child {
+      -ms-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -o-transform: scale(1.05);
+      transform: scale(1.05);
+      &::before {
+        //display: block;
+        opacity: 1;
+      }
+    }
+    .showAll {
+      @media only screen and (min-width: 769px) {
+        display: block;
+      }
+    }
+  }
+  &:focus {
+    .child {
+      -ms-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -o-transform: scale(1.05);
+      transform: scale(1.05);
+      &::before {
+        display: block;
+      }
+    }
+  }
+}
+
+// custom mapbox
+.mapCustomContainer {
+  .mapboxgl-ctrl-bottom-left {
+    display: none;
+  }
+  .mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+    margin: 24px 24px 0 0;
+    box-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.04), 0px 8px 16px rgba(0, 0, 0, 0.04);
+  }
+  .mapboxgl-ctrl-zoom-in {
+    width: 40px;
+    height: 40px;
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+  .mapboxgl-ctrl-zoom-out {
+    width: 40px;
+    height: 40px;
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+  .mapboxgl-ctrl-group button + button {
+    border-top: 1px solid #ebe9e9;
+  }
+  .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
+    background-image: url('../assets/icons/ic_add_plus.svg');
+  }
+  .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
+    background-image: url('../assets/icons/ic_remove_minus.svg');
+  }
+}
+:root {
+  --PhoneInput-color--focus: #39080a;
+}
+.mapboxgl-popup-custom {
+  width: 324px;
+  max-width: 324px !important;
+  min-width: 324px;
+  &.mapboxgl-popup {
+    display: none;
+    @media (min-width: 640px) {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      display: flex;
+    }
+    // @media (min-width: 1024px) {
+    //   display: flex;
+    // }
+    // @media (min-width: 1280px) {
+    //   display: flex;
+    // }
+    // @media (min-width: 1536px) {
+    //   display: flex;
+    // }
+  }
+  .mapboxgl-popup-content {
+    background: transparent;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 16px;
+    margin-top: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    width: 324px;
+  }
+  .mapboxgl-popup-tip {
+    display: none;
+  }
+}
+.merchant-slider-custom {
+  border-radius: 12px;
+  *:focus {
+    outline: 0;
+    outline: none;
+  }
+  .slick-slide div {
+    outline: none;
+  }
+  .slick-list {
+    border-radius: 12px;
+    // border: solid 1px #fff;
+  }
+  &.merchant-slider-map {
+    width: 324px !important;
+    .slick-list {
+      border-radius: 12px 12px 0 0;
+      border: none;
+      height: 160px !important;
+      @media (min-width: 640px) {
+        height: 160px !important;
+      }
+      @media (min-width: 768px) {
+        height: 160px !important;
+      }
+      @media (min-width: 1024px) {
+        height: 160px !important;
+      }
+      @media (min-width: 1280px) {
+        height: 160px !important;
+      }
+      @media (min-width: 1536px) {
+        height: 160px !important;
+      }
+    }
+  }
+  &.merchant-slider-map-tablet {
+    width: 126px !important;
+    .slick-list {
+      border-radius: 16px 0 0 16px;
+      border: none;
+      height: 126px !important;
+    }
+  }
+  &.merchant-slider-map-mobile {
+    width: 126px !important;
+    .slick-list {
+      border-radius: 12px 0 0 12px;
+      border: none;
+      height: 126px !important;
+      @media (min-width: 640px) {
+        height: 126px !important;
+      }
+      @media (min-width: 768px) {
+        height: 126px !important;
+      }
+      @media (min-width: 1024px) {
+        height: 126px !important;
+      }
+      @media (min-width: 1280px) {
+        height: 126px !important;
+      }
+      @media (min-width: 1536px) {
+        height: 126px !important;
+      }
+    }
+    &.merchant-slider-landing-page {
+      @media (min-width: 640px) {
+        height: 358px !important;
+      }
+      @media (min-width: 768px) {
+        height: 185px !important;
+      }
+      @media (min-width: 1024px) {
+        height: 354px !important;
+      }
+      @media (min-width: 1280px) {
+        height: 408px !important;
+      }
+      @media (min-width: 1536px) {
+        height: 408px !important;
+      }
+    }
+  }
+  &.merchant-slider-landing-special-page {
+    @media (min-width: 640px) {
+      height: 358px !important;
+    }
+    @media (min-width: 768px) {
+      height: 224px !important;
+    }
+    @media (min-width: 1024px) {
+      height: 298px !important;
+    }
+    @media (min-width: 1280px) {
+      height: 368px !important;
+    }
+    @media (min-width: 1536px) {
+      height: 368px !important;
+    }
+  }
+  .slick-dots {
+    bottom: 12px;
+    li {
+      margin: 0;
+      height: 4px;
+      width: 12px;
+    }
+  }
+  .slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+  }
+  .slick-dots li button:before {
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .slick-prev,
+  .slick-next {
+    z-index: 1;
+    opacity: 0;
+    transition: 0.5s all;
+    width: 24px;
+    height: 24px;
+  }
+  .slick-prev {
+    left: 16px;
+  }
+  .slick-next {
+    right: 16px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    content: '';
+  }
+  &:hover {
+    .slick-prev,
+    .slick-next {
+      opacity: 1;
+    }
+  }
+  .slick-disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+.slick-slide {
+  outline: none;
+}
+.slick-slider {
+  div {
+    outline: none;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.MuiDialog-paper {
+  width: calc(100% - 32px);
+  @media (min-width: 768px) {
+    width: calc(100% - 64px);
+  }
+}
+.MuiDialogContent-root {
+  padding: 0 16px;
+  margin: 0 -16px;
+  @media (min-width: 768px) {
+    padding: 0 24px;
+    margin: 0 -24px;
+  }
+}
+.custom-hover {
+  .normal {
+    display: flex;
+  }
+  .active {
+    display: none;
+  }
+  &:hover {
+    .normal {
+      display: none;
+    }
+    .active {
+      display: flex;
+    }
+  }
+}
+.custom-drawer {
+  .MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+.custom-dots-slider {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: auto;
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+  display: flex !important;
+  .dot-item {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    padding: 0;
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    &.actived {
+      background-color: white;
+    }
+    button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 8px;
+      height: 8px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+    }
+    button:before {
+      //font-size: 6px;
+      //line-height: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      content: '•';
+      text-align: center;
+      opacity: 0.6;
+      color: white;
+      background-color: white;
+      border-radius: 50%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .slick-active {
+      button:before {
+        color: white;
+        opacity: 1;
+      }
+    }
+    button:before {
+      opacity: 0.6;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+.apple-goole-pay-custom {
+  iframe {
+    border-radius: 16px;
+  }
+}
+.custom-ul {
+  list-style: none;
+  li::before {
+    content: '\2022';
+    color: #6a6a68;
+    display: inline;
+    margin: 0 12px;
+  }
+}
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
+.break-word {
+  word-break: break-word;
+}

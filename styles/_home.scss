@@ -1,0 +1,859 @@
+.dashboardContainer {
+  //background: white;
+  min-width: 360px;
+  //overflow: auto;
+  // overflow-x: hidden;
+  .commonBG {
+    background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    // background-position: center;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+  }
+  .dashboardHeader {
+    background: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px;
+    @media only screen and (max-width: 767px) {
+      padding: 24px 16px;
+    }
+    .menu-item {
+      font-family: Maison Neue Regular;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #625f5c;
+      margin-left: 24px;
+    }
+  }
+  .dashboardHeaderMobile {
+    display: none;
+    @media only screen and (max-width: 767px) {
+      background: transparent;
+      width: calc(100% + 48px);
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      margin: 0 -24px;
+    }
+    .menu-item {
+      font-family: PPMonument Extended Bold;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 12px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #32302d;
+      margin-left: 24px;
+    }
+  }
+  // .home-image-group {
+  //   filter: drop-shadow(0px 628px 176px rgba(0, 0, 0, 0.03)) drop-shadow(0px 402px 161px rgba(0, 0, 0, 0.03))
+  //     drop-shadow(0px 226px 136px rgba(0, 0, 0, 0.04)) drop-shadow(0px 100px 100px rgba(0, 0, 0, 0.06))
+  //     drop-shadow(0px 25px 55px rgba(0, 0, 0, 0.08)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.08));
+  // }
+  .dashboardNewWorld {
+    background: #a32a30;
+    width: 100%;
+    .dashboardNewWorldContent {
+      margin: auto;
+      max-width: 1304px;
+      padding: 220px 40px;
+      @media only screen and (max-width: 959px) {
+        padding: 160px 24px;
+      }
+      @media only screen and (max-width: 767px) {
+        padding: 112px 16px;
+      }
+      .sub-header-text {
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin-bottom: 24px;
+        @media only screen and (max-width: 959px) {
+          font-size: 14px;
+          line-height: 16px;
+        }
+        @media only screen and (max-width: 767px) {
+          font-size: 12px;
+          line-height: 16px;
+          letter-spacing: 0.25em;
+        }
+      }
+      .header-text {
+        font-family: PPMonument Extended Bold;
+        font-style: normal;
+        font-weight: 700;
+        //font-size: 56px;
+        //line-height: 64px;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+        margin-bottom: 16px;
+        width: 706px;
+        @media only screen and (max-width: 959px) {
+          width: 100%;
+        }
+      }
+      .sub-text-description {
+        font-size: 24px;
+        line-height: 36px;
+        color: #ffffff;
+        // width: 578px;
+        width: 706px;
+        @media only screen and (max-width: 959px) {
+          width: 100%;
+          padding-right: 0;
+          max-width: 536px;
+        }
+        @media only screen and (max-width: 767px) {
+          padding-right: 0;
+          max-width: 536px;
+        }
+      }
+      .moreBtn {
+        margin-top: 40px;
+        margin-bottom: 112px;
+        @media only screen and (max-width: 959px) {
+          margin-top: 40px;
+          margin-bottom: 64px;
+        }
+        @media only screen and (max-width: 767px) {
+          margin-top: 40px;
+          margin-bottom: 48px;
+        }
+      }
+      .itemGroup {
+        width: calc(100% + 24px);
+        margin: 0 -12px;
+        display: flex;
+        @media only screen and (max-width: 959px) {
+          flex-wrap: wrap;
+        }
+        @media only screen and (max-width: 767px) {
+          padding: 0 16px;
+        }
+        .itemBox {
+          width: calc(25% - 24px);
+          color: white;
+          margin: 0 12px;
+          &.lastItem {
+            @media only screen and (max-width: 959px) {
+              margin-bottom: 0;
+            }
+          }
+          @media only screen and (max-width: 959px) {
+            width: calc(50% - 24px);
+            margin: 0 12px;
+            height: auto;
+            margin-bottom: 48px;
+          }
+          @media only screen and (max-width: 767px) {
+            width: 100%;
+            margin: 0;
+            height: auto;
+            margin-bottom: 48px;
+          }
+          .titleItem {
+            font-family: 'Editorial New Regular';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 36px;
+            color: #ffffff;
+            margin-bottom: 24px;
+            margin-top: 24px;
+          }
+          .desTextItem {
+            font-family: Maison Neue Regular;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 28px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  .dashboardDecentralized {
+    width: 100%;
+    position: relative;
+    height: 1182px;
+    background: #f9f7f7;
+    overflow: hidden;
+    // background-image: url('https://static.dtravel.com/images/bg_decentralized.jpg');
+    @media only screen and (max-width: 959px) {
+      height: 726px;
+      background-image: url('https://static.dtravel.com/images/bg_decentralized_mobile.jpg');
+    }
+    .bgDecentralized {
+      position: absolute;
+      right: calc((100vw - 1512px) / 2 - 300px);
+      top: 0;
+      z-index: 2;
+      width: 1304px;
+      min-width: 1304px;
+      padding: 0 40px;
+      // @media only screen and (max-width: 1600px) {
+      //   right: 0;
+      // }
+      // @media only screen and (max-width: 1600px) {
+      //   right: 0;
+      // }
+      // @media only screen and (max-width: 1512px) {
+      //   right: -120px;
+      // }
+      // @media only screen and (max-width: 1360px) {
+      //   right: -240px;
+      // }
+      // @media only screen and (max-width: 1224px) {
+      //   right: -360px;
+      // }
+      @media only screen and (max-width: 959px) {
+        display: none;
+      }
+    }
+    .dashboardDecentralizedContent {
+      position: relative;
+      margin: auto;
+      z-index: 3;
+      max-width: 1304px;
+      height: 100%;
+      padding: 220px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @media only screen and (max-width: 959px) {
+        padding: 160px 24px;
+      }
+      @media only screen and (max-width: 767px) {
+        padding: 112px 16px;
+      }
+      .topTitle {
+        margin-bottom: 24px;
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #32302d;
+        @media only screen and (max-width: 959px) {
+          font-size: 14px;
+        }
+      }
+      .textTitle {
+        margin-bottom: 16px;
+        font-family: PPMonument Extended Bold;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 64px;
+        letter-spacing: -0.01em;
+        // width: calc(100% / 12 * 7);
+        width: 808px;
+        @media only screen and (max-width: 959px) {
+          font-size: 48px;
+          line-height: 56px;
+        }
+        @media only screen and (max-width: 767px) {
+          font-size: 28px;
+          line-height: 36px;
+          width: 100%;
+          padding-right: 0;
+        }
+      }
+      .textDescription {
+        margin-bottom: 40px;
+        font-family: Maison Neue Regular;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        color: #32302d;
+        // width: calc(100% / 12 * 7);
+        width: 808px;
+        @media only screen and (max-width: 959px) {
+          font-size: 24px;
+          line-height: 36px;
+          width: 100%;
+          padding-right: 0;
+          margin-bottom: 48px;
+        }
+        @media only screen and (max-width: 767px) {
+          font-size: 18px;
+          line-height: 28px;
+          width: 100%;
+          padding-right: 0;
+          margin-bottom: 32px;
+        }
+      }
+      .readMoreBtn {
+        display: flex;
+        border: 2px solid #32302d;
+        box-sizing: border-box;
+        border-radius: 12px;
+        width: 168px;
+        padding: 20px;
+        @media only screen and (max-width: 959px) {
+          width: 158px;
+        }
+        span {
+          font-family: Maison Neue Regular;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          color: #32302d;
+          margin-right: 12px;
+          @media only screen and (max-width: 959px) {
+            font-size: 16px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .dashboardNativeToken {
+    width: 100%;
+    height: 1230px;
+    background-image: url('https://static.dtravel.com/images/bg-native-token-desktop.webp');
+    @media only screen and (max-width: 959px) {
+      height: 1384px;
+      background-image: url('https://static.dtravel.com/images/bg-native-token-mobile.webp');
+    }
+    @media only screen and (max-width: 767px) {
+      height: 1796px;
+      background-image: url('https://static.dtravel.com/images/bg-native-token-mobile.webp');
+    }
+    .dashboardNativeTokenContent {
+      margin: auto;
+      height: 100%;
+      max-width: 1304px;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      color: #d4eee9;
+      @media only screen and (max-width: 959px) {
+        padding: 0 24px;
+      }
+      @media only screen and (max-width: 959px) and (orientation: landscape) {
+        margin-top: 176px;
+      }
+      .header-token {
+        font-family: Maison Neue Regular;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        margin-top: 40px;
+        @media only screen and (max-width: 959px) {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+      .title-token {
+        width: 702px;
+        font-family: PPMonument Extended Bold;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 64px;
+        letter-spacing: -0.01em;
+        margin-bottom: 24px;
+        @media only screen and (max-width: 959px) {
+          font-size: 48px;
+          line-height: 56px;
+        }
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+          padding-right: 0;
+          font-size: 28px;
+          line-height: 36px;
+        }
+      }
+      .sub-text-token {
+        width: 702px;
+        // width: calc(100% / 12 * 7);
+        padding-right: 0;
+        font-family: Maison Neue Regular;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        margin-bottom: 40px;
+        @media only screen and (max-width: 959px) {
+          width: 100%;
+          padding-right: 0;
+          font-size: 24px;
+          line-height: 36px;
+        }
+        @media only screen and (max-width: 767px) {
+          font-size: 18px;
+          line-height: 28px;
+        }
+      }
+      .token-btn {
+        width: calc(25% - 24px);
+        box-sizing: border-box;
+        @media only screen and (max-width: 959px) {
+          width: calc(50% - 24px);
+          margin-bottom: 24px;
+        }
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+        }
+        p {
+          color: #d4eee9;
+        }
+      }
+    }
+  }
+
+  .dashboardPress {
+    height: calc(100vw / 1834 * 1571);
+    min-height: 1571px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://static.dtravel.com/dtravel-direct/Press_Desktop.webp');
+    @media only screen and (max-width: 959px) {
+      padding: 0 24px;
+      height: 1145px;
+      min-height: 1145px;
+      background-image: url('https://static.dtravel.com/dtravel-direct/Press_Small_Tablet.webp');
+    }
+    @media only screen and (max-width: 767px) {
+      padding: 0 16px;
+      height: 965px;
+      min-height: 965px;
+      background-image: url('https://static.dtravel.com/dtravel-direct/Press_Mobile.webp');
+    }
+    .dashboardPressContent {
+      margin: auto;
+      height: 100%;
+      max-width: 1304px;
+      padding: 220px 40px;
+      @media only screen and (max-width: 1024px) {
+        max-width: 1024px;
+      }
+      @media only screen and (max-width: 959px) {
+        padding: 160px 0;
+      }
+      @media only screen and (max-width: 767px) {
+        padding: 112px 0;
+      }
+      .titlePress {
+        font-family: PPMonument Extended Bold;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 64px;
+        letter-spacing: -0.01em;
+        color: #32302d;
+        margin-bottom: 56px;
+        @media only screen and (max-width: 959px) {
+          font-size: 48px;
+          line-height: 56px;
+        }
+        @media only screen and (max-width: 767px) {
+          font-size: 28px;
+          line-height: 36px;
+          margin-bottom: 48px;
+        }
+      }
+      .cardGroup {
+        scroll-behavior: smooth;
+        display: flex;
+        // margin-bottom: 48px;
+        overflow: auto;
+        // width: calc(100% + 50vw - 636px + 40px);
+        // width: calc(100vw - 40px);
+        // max-width: 2160px;
+        // margin-left: -24px;
+        // padding-left: 24px;
+        // width: 100vw;
+        width: calc(100vw - 10px);
+        margin-left: calc(612px - 50vw);
+        padding-left: calc(50vw - 612px);
+        padding-right: calc(50vw - 612px);
+        @media only screen and (max-width: 1280px) {
+          width: 100%;
+        }
+        @media only screen and (max-width: 1024px) {
+          margin-left: 0;
+          width: calc(100% + 40px);
+        }
+        @media only screen and (max-width: 959px) {
+          width: 100vw;
+          margin-left: -24px;
+          padding-left: 24px;
+          padding-right: 24px;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE 10+ */
+          &::-webkit-scrollbar {
+            background: transparent; /* Chrome/Safari/Webkit */
+            width: 0px;
+          }
+        }
+        a {
+          padding-bottom: 48px;
+        }
+        .cardItem {
+          width: 392px;
+          min-width: 392px;
+          height: 100%;
+          margin-right: 24px;
+          background: #ffffff;
+          box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.04);
+          border-radius: 24px;
+          &.lastItem {
+            margin-right: 0;
+          }
+          @media only screen and (max-width: 959px) {
+            width: calc(100% - 48px);
+            max-width: 392px;
+            min-width: 392px;
+            // height: auto;
+          }
+          .logoBox {
+            height: 203px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+          }
+        }
+        .cardInfo {
+          padding: 24px;
+          .cardTitle {
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+          }
+          .cardDescription {
+            color: #171716;
+          }
+        }
+      }
+      .actionGroup {
+        display: flex;
+        // display: none;
+        @media only screen and (max-width: 2160px) {
+          display: flex;
+        }
+        .actionItem {
+          width: 64px;
+          height: 64px;
+          border: 2px solid #171716;
+          border-radius: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &.leftItem {
+            margin-right: 12px;
+          }
+          &.activeItem {
+            opacity: 1;
+          }
+          &.disabledItem {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+    &.daoPress {
+      .dashboardPressContent {
+        padding: 120px 40px;
+        @media only screen and (max-width: 959px) {
+          padding: 80px;
+        }
+        @media only screen and (max-width: 767px) {
+          padding: 80px 24px;
+        }
+      }
+    }
+  }
+
+  .dashboardFooter {
+    width: 100%;
+    background: white;
+    @media only screen and (max-width: 959px) {
+      height: auto;
+    }
+    .dashboardFooterContent {
+      margin: auto;
+      height: 100%;
+      max-width: 1304px;
+      padding: 88px 40px;
+      display: flex;
+      justify-content: space-between;
+      @media only screen and (max-width: 959px) {
+        padding: 0 80px;
+        padding-top: 64px;
+        flex-direction: column;
+      }
+      @media only screen and (max-width: 767px) {
+        flex-direction: column;
+        padding: 0 24px;
+        padding-top: 64px;
+      }
+
+      .text-logo {
+        margin-bottom: 16px;
+        @media only screen and (max-width: 767px) {
+          margin-bottom: 40px;
+        }
+      }
+      .privacy-text {
+        font-family: Maison Neue Regular;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #6f6b69;
+      }
+      .footerRight {
+        display: flex;
+        .footer-icon {
+          width: 32px;
+          height: 32px;
+          margin-left: 24px;
+          @media only screen and (max-width: 959px) {
+            margin-left: 0;
+            margin-right: 24px;
+            margin-bottom: 88px;
+          }
+        }
+      }
+    }
+  }
+}
+.dashboard-menu-mobile {
+  .MuiDrawer-paper {
+    width: 100%;
+  }
+  .dashboardDrawer {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    .dashboardDrawerMenu {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      .menu-item {
+        margin-bottom: 32px;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.01em;
+        color: #fcfafa;
+        a {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .dashboardDrawerFooter {
+      display: flex;
+      flex-direction: column;
+      .privacy-text {
+        font-family: Maison Neue Regular;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: white;
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.dashboard-dialog-container {
+  .dialog-title {
+    font-family: PPMonument Extended Bold;
+    font-size: 48px;
+    line-height: 64px;
+    color: white;
+  }
+}
+.dashboard-dialog-content {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 48px 32px;
+  border-radius: 40px;
+  .dialog-close-icon {
+    background-color: #303030;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 16px;
+  }
+  .joinTheWaitlistBtn {
+    background: #000;
+    color: #fff;
+    font-family: Maison Neue Regular;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .dashboard-dialog-text-content {
+    font-family: 'Editorial New Regular';
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .email-input {
+    padding: 48px 0 24px 0;
+    input {
+      border: solid 1px #d1d5db;
+      width: 100%;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
+.roadMapContainer {
+  padding-left: 40px;
+  padding-right: 40px;
+  @media only screen and (max-width: 959px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media only screen and (max-width: 767px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .roadMapItem {
+    flex-direction: row;
+    @media only screen and (max-width: 959px) {
+      flex-direction: column-reverse;
+      justify-content: center;
+    }
+    @media only screen and (max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+  }
+  .phase2Item {
+    margin-top: -604px;
+    @media only screen and (max-width: 959px) {
+      margin-top: 0;
+    }
+    @media only screen and (max-width: 767px) {
+      margin-top: 0;
+    }
+  }
+  .phase3Item {
+    padding-bottom: 0;
+    @media only screen and (max-width: 959px) {
+      padding-bottom: 160px;
+    }
+    @media only screen and (max-width: 767px) {
+      padding-bottom: 0;
+    }
+  }
+  .roadMapText {
+    padding-left: 0;
+    padding-right: 0;
+    @media only screen and (max-width: 959px) {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+    @media only screen and (max-width: 767px) {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  .roadMapImg {
+    justify-content: flex-end;
+    width: 600px;
+    min-width: 600px;
+    margin-top: 110px;
+    margin-bottom: 110px;
+    @media only screen and (max-width: 959px) {
+      justify-content: center;
+      width: 100%;
+      min-width: auto;
+      margin-top: 88px;
+      margin-bottom: 48px;
+    }
+    @media only screen and (max-width: 767px) {
+      justify-content: center;
+      width: calc(100% - 32px);
+      min-width: auto;
+      margin-top: 48px;
+      margin-bottom: 32px;
+    }
+  }
+  .phase1Image {
+    margin-top: 180px;
+    margin-bottom: 714px;
+    @media only screen and (max-width: 959px) {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+    @media only screen and (max-width: 767px) {
+      margin-top: 48px;
+      margin-bottom: 32px;
+    }
+  }
+  .phase3Image {
+    margin-bottom: 220px;
+    @media only screen and (max-width: 959px) {
+      margin-bottom: 48px;
+    }
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 32px;
+    }
+  }
+  .contentPhase {
+    margin-bottom: 0;
+    max-width: 506px;
+    margin-left: 24px;
+    padding-right: 24px;
+    @media only screen and (max-width: 959px) {
+      margin-bottom: 0;
+      max-width: max-content;
+    }
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 0;
+      max-width: max-content;
+      margin-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  .contentPhase1 {
+    margin-bottom: 318px;
+    @media only screen and (max-width: 959px) {
+      margin-bottom: 0;
+    }
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+}

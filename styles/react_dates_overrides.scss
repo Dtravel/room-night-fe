@@ -1,0 +1,155 @@
+.customDateRange {
+  background-color: #fcfafa;
+  @media only screen and (min-width: 769px) {
+    border-top: 1px solid #e3e0df;
+    border-bottom: 1px solid #e3e0df;
+  }
+
+  .DayPicker_transitionContainer {
+    border: none;
+  }
+
+  .DayPicker_weekHeader_ul {
+    font-family: Inter Medium;
+    font-size: 17.5px;
+    line-height: 20px;
+    color: #0F0F0E;
+  }
+
+  .CalendarMonth_table {
+    margin-top: 16px;
+  }
+
+  .CalendarDay__default {
+    border: none;
+  }
+  .DayPicker_transitionContainer,
+  .CalendarMonthGrid,
+  .CalendarMonth {
+    background-color: #fcfafa;
+  }
+  .CalendarDay__default {
+    background-color: #fcfafa;
+  }
+
+  .CalendarMonthGrid,
+  .CalendarMonthGrid_1,
+  .CalendarMonthGrid__horizontal,
+  .CalendarMonthGrid__horizontal_2 {
+    width: 100%;
+  }
+
+  .CalendarMonth {
+    margin-bottom: 24px;
+  }
+  .CalendarMonth_caption {
+    padding-top: 32px;
+    font-family: 'Inter SemiBold', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #0F0F0E;
+    text-transform: uppercase;
+    strong {
+      font-weight: 600;
+      font-family: 'Inter SemiBold', serif;
+    }
+  }
+  .DayPicker_weekHeader_ul {
+    padding-top: 11px;
+  }
+
+  .CalendarDay__selected,
+  .CalendarDay__selected:active,
+  .CalendarDay__selected:hover {
+    background-color: #fcfafa;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+  }
+
+  .CalendarDay__selected_start,
+  .CalendarDay__selected_start:hover {
+    border-radius: 50% 0 0 50%;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .CalendarDay__selected_end,
+  .CalendarDay__selected_end:hover {
+    border-radius: 0 50% 50% 0;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  .CalendarDay__selected_start_no_selected_end, .CalendarDay__selected_end_no_selected_start, .CalendarDay__selected_start_no_selected_end:hover, .CalendarDay__selected_end_no_selected_start:hover {
+    border-radius: 50% 50% 50% 50%;
+  }
+
+
+  // Will edit everything selected including everything between a range of dates
+  .CalendarDay__selected_span {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: #0F0F0E; //text
+    border: none; //default styles include a border
+  }
+
+  .CalendarDay__hovered_span:hover,
+  .CalendarDay__hovered_span {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  //.CalendarDay__blocked_out_of_range {
+  //  color: #8C8C88; //neutral-500
+  //}
+
+  .CalendarDay__blocked_calendar,
+  .CalendarDay__blocked_calendar:active,
+  .CalendarDay__blocked_calendar:hover,
+  .CalendarDay__blocked_out_of_range,
+  .CalendarDay__blocked_out_of_range:active,
+  .CalendarDay__blocked_out_of_range:hover {
+    line-height: 20px;
+    text-align: center;
+    //text-decoration-line: line-through;
+    color: #8C8C88; //neutral-500
+    cursor: not-allowed;
+  }
+
+  .DayPickerNavigation__horizontal {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    height: 0;
+    background-color: #fcfafa;
+  }
+
+  .DayPickerNavigation__verticalScrollable {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+
+  .DayPicker_weekHeader__verticalScrollable {
+    //background-color: #FCFAFA;
+  }
+  .DayPicker_weekHeader__verticalScrollable .DayPicker_weekHeader_ul {
+    padding-bottom: 12px;
+  }
+  .CalendarMonthGrid__vertical_scrollable {
+    padding-top: 16px;
+  }
+  .DayPicker_transitionContainer__verticalScrollable {
+    margin-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .DayPicker_transitionContainer {
+    padding-bottom: 44px;
+    box-sizing: content-box;
+  }
+  //.CalendarMonthGrid__vertical_scrollable {
+  //  overflow-y: scroll;
+  //  height: calc(100% + 32px);
+  //}
+
+  //DayPicker_transitionContainer DayPicker_transitionContainer_1 DayPicker_transitionContainer__horizontal DayPicker_transitionContainer__horizontal_2
+}
