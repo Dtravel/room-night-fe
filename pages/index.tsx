@@ -98,16 +98,16 @@ export async function getServerSideProps(context: any) {
   const dataServerProps = { ...(await serverProps(context)) }
   const hostDomain = req?.headers?.host
   const { settingUrl } = dataServerProps
-  if (settingUrl && checkRedirectActived(settingUrl, hostDomain)) {
-    // support case change custom domain
-    const { domain, paramsSearch } = genDomain(context, settingUrl)
-    return {
-      redirect: {
-        permanent: true,
-        destination: `${domain}${paramsSearch ? `?${paramsSearch}` : ''}`,
-      },
-    }
-  }
+  // if (settingUrl && checkRedirectActived(settingUrl, hostDomain)) {
+  //   // support case change custom domain
+  //   const { domain, paramsSearch } = genDomain(context, settingUrl)
+  //   return {
+  //     redirect: {
+  //       permanent: true,
+  //       destination: `${domain}${paramsSearch ? `?${paramsSearch}` : ''}`,
+  //     },
+  //   }
+  // }
   return { props: { ...dataServerProps, userAgent, isMobile } }
 }
 
