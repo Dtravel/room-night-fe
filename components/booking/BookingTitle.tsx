@@ -14,7 +14,6 @@ const BookingTitle: React.FC<Props> = ({ manualReservationData }) => {
   const propertyID = propertyId
   const isManualReservation = Boolean(reservationId)
 
-
   const goToProperty = () => {
     router.push({
       pathname: hostId ? `/property/${hostId}/${propertyID}` : `/property/${propertyID}`,

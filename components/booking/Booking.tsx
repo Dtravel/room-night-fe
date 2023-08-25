@@ -9,6 +9,7 @@ import {
   getDetailBooking,
   getPricesBooking,
   getPricesManualBooking,
+  getRoomNightOperator,
   getStripeInfo,
   getTokenContract,
   stripePaymentBooking,
@@ -38,14 +39,11 @@ import { handleBookCrypto, startApp } from '@dtravel/helpers/utils/ether'
 import { useAppDispatch, useAppSelector } from '@dtravel/redux/hooks'
 import { setToast, setToastError, setLoadingPrice, setPromoCode } from '@dtravel/redux/slices/common'
 import detectEthereumProvider from '@metamask/detect-provider'
-import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import BookingSaving from './BookingSaving'
-import GoogleAndApplePay from '@dtravel/components/booking/GoogleAndApplePay'
 import BookingAddOn from './BookingAddOn'
-import BillingDetail from './BillingDetail'
+// import BillingDetail from './BillingDetail'
 import { convertSubPaymentMethod, isEmpty } from '@dtravel/utils/common'
 import { getRateCurrency } from '@dtravel/helpers/api/property'
 import { setRates } from '@dtravel/redux/slices/property'
@@ -75,7 +73,6 @@ const Booking: React.FC<Props> = (props) => {
   const isMobile = windowDimensions.width < 768
   const [stripeInfo, setStripeInfo] = useState<StripeInfoProps | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const [firstLoading, setFirstLoading] = useState<boolean>(true)
   const [disabled, setDisabled] = useState<boolean>(false)
   const [bookingPrices, setBookingPrices] = useState<any>({})
   const [tokenAddress, setTokenAddress] = useState<TokenAddressProps[]>([])
@@ -110,7 +107,17 @@ const Booking: React.FC<Props> = (props) => {
   const goToBookingSummary = (reservationID: string) => {
     router.push({ pathname: `/booking-summary/${reservationID}` })
   }
-
+  const handleBookWithCrypto = async (
+    bookingData: any,
+    tokenAddress: string,
+    setLoading: any,
+    goToBookingSummary: any
+  ) => {
+    try {
+      const res = await getRoomNightOperator()
+      console.log('test', res.data)
+    } catch (error) { }
+  }
   const handleSubmit = async () => {
     const isCryptoPayment = typePayment === TYPE_PAYMENT.CRYPTO
     const finalPriceDTO: number = Number(
@@ -118,6 +125,8 @@ const Booking: React.FC<Props> = (props) => {
     )
     try {
       setLoading(true)
+      const res = await getRoomNightOperator()
+      console.log('test', res.data)
       let guestInfoDTO = {
         ...guestInfo,
         name: `${guestInfo.firstName} ${guestInfo.lastName}`
@@ -166,15 +175,17 @@ const Booking: React.FC<Props> = (props) => {
         const res = await updateManualBookingOrder(reservationId as string, manualDataDTO)
         data = res?.data
       } else {
-        const res = await createBookingOrder(dataDTO)
+        // const res = await createBookingOrder(dataDTO)
         data = res?.data
       }
 
-      if (isCryptoPayment) {
-        const tokenContract = tokenAddress.find((v) => v.symbol === cryptoPayment)
-        if (finalPriceDTO > 0) handleBookCrypto(data?.data, tokenContract?.address || '', setLoading, goToBookingSummary)
-        else goToBookingSummary(data?.data?.reservationId)
-      }
+      // if (isCryptoPayment) {
+      //   const tokenContract = tokenAddress.find((v) => v.symbol === cryptoPayment)
+      //   if (finalPriceDTO > 0) {
+      //     // handleBookCrypto(data?.data, tokenContract?.address || '', setLoading, goToBookingSummary)
+      //     handleBookWithCrypto(data?.data, tokenContract?.address || '', setLoading, goToBookingSummary)
+      //   } else goToBookingSummary(data?.data?.reservationId)
+      // }
     } catch (error: any) {
       setLoading(false)
       showError(
@@ -182,25 +193,12 @@ const Booking: React.FC<Props> = (props) => {
       )
     }
   }
-  const fetchStripeInfo = async () => {
-    if (hostID) {
-      try {
-        setFirstLoading(true)
-        const { data } = await getStripeInfo(hostID)
-        if (data.success) setStripeInfo(data.data)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setFirstLoading(false)
-      }
-    }
-  }
+
   const checkConnectMetamask = async () => {
     const provider = await detectEthereumProvider()
     if (provider) startApp(provider)
   }
   useEffect(() => {
-    fetchStripeInfo()
     checkConnectMetamask()
     // eslint-disable-next-line
   }, [hostID])
@@ -346,9 +344,7 @@ const Booking: React.FC<Props> = (props) => {
       </>
     )
   }
-  if (firstLoading) {
-    return <></>
-  }
+
   const disableManualAndAvail =
     (!bookingPrices?.isAvail && !(isManualReservation && manualReservationData?.isBlockCalendar)) ||
     manualReservationData?.status === RESERVATION_STATUS.EXPIRED ||
@@ -453,14 +449,6 @@ const Booking: React.FC<Props> = (props) => {
           <BookingSaving bookingPrices={bookingPrices} propertyDetail={propertyDetail} />
         </div>
       </div>
-      <BillingDetail
-        stripeInfo={stripeInfo}
-        email={guestInfo?.email || ''}
-        reservationID={reservationID}
-        handleClose={() => {
-          setLoading(false)
-        }}
-      />
     </>
   )
 }

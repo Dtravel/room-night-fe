@@ -30,7 +30,7 @@ const BookingCrypto: React.FC<Props> = ({ paymentMethods, bookingPrices, propert
   const [balances, setBalances] = useState<any>({})
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
-  const propertyContracts: Array<any> = propertyDetail?.propertyContracts || []
+  const propertyContracts: Array<any> = (propertyDetail?.propertyContracts || []).filter((v: any) => !isEmpty(v.propertyContract))
   const paymentMethodCrypto: Array<any> = paymentMethods.filter((v) => v.type === 'CRYPTO')
   const paymentMethodCryptoEnabled: Array<any> = paymentMethodCrypto.filter((v) => {
     const isDisabled =

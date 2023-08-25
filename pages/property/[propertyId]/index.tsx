@@ -83,6 +83,7 @@ export async function getServerSideProps(context: any) {
       },
     }
   } catch (err) {
+    console.log('err', err)
     return {
       props: {
         data: null,

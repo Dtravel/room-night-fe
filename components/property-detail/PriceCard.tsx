@@ -107,7 +107,6 @@ const PriceCard: React.FC<Props> = ({
       infants,
       pets,
     }
-    if (hostId) paramsQuery = { ...paramsQuery, hostId }
     if (propertyId) paramsQuery = { ...paramsQuery, propertyId }
     return paramsQuery
   }
