@@ -84,26 +84,10 @@ workflows:
           requires:
             - build
       - aws-ecs/deploy-service-update:
-          name: deploy
-          cluster-name: $ECS_CLUSTER
-          container-image-name-updates: 'container=dtravel-room-night-service,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
-          family: dtravel-room-night-service
-          context:
-            - common
-            - ecr-<< pipeline.git.branch >>
-            - << pipeline.git.branch >>
-          filters:
-            branches:
-              only:
-                - main
-                - dev
-          requires:
-            - build
-      - aws-ecs/deploy-service-update:
           name: deploy-stg
           cluster-name: $ECS_CLUSTER
-          container-image-name-updates: 'dtravel-room-night-fe-staging-service,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
-          family: "dtravel-room-night-fe-staging-service"
+          container-image-name-updates: 'room-night-fe-staging-build,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
+          family: "room-night-fe-service-stg"
           context:
             - common
             - ecr-<< pipeline.git.branch >>
@@ -114,3 +98,4 @@ workflows:
                 - staging
           requires:
             - build
+
