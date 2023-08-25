@@ -102,8 +102,8 @@ workflows:
       - aws-ecs/deploy-service-update:
           name: deploy-stg
           cluster-name: $ECS_CLUSTER
-          container-image-name-updates: 'container=dtravel-room-night-service-stg,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
-          family: "dtravel-room-night-service-stg"
+          container-image-name-updates: 'dtravel-room-night-fe-staging-service,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
+          family: "dtravel-room-night-fe-staging-service"
           context:
             - common
             - ecr-<< pipeline.git.branch >>
