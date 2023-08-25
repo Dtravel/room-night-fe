@@ -10,5 +10,5 @@ COPY loader.ts ./loader.ts
 COPY node_modules ./node_modules
 COPY package.json .
 COPY .env.staging .
-EXPOSE 80
+EXPOSE 3000
 CMD [ "yarn", "start" ]
