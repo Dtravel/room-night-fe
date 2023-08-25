@@ -1,0 +1,116 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@7.3.0
+  slack: circleci/slack@4.8.3
+  aws-ecs: circleci/aws-ecs@2.0.0
+executors:
+  docker-executor:
+    docker:
+      - image: public.ecr.aws/p5h0u5q6/node-sonar:16.15.0
+    resource_class: medium
+parameters:
+  repo:
+    type: string
+    default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-build"
+  tag:
+    type: string
+    default: '"<< pipeline.number >>"'
+
+commands:
+  create-app:
+    steps:
+      - run: git clone -b ${CIRCLE_BRANCH} $GITOPS_SCRIPT_REPO scripts
+      - run: bash ./scripts/cd/config-git.sh
+      - run: bash ./scripts/cd/master-app.sh
+      - run: bash ./scripts/cd/apps.sh << pipeline.parameters.repo >> << pipeline.parameters.tag >>
+
+jobs:
+  build:
+    executor: docker-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "package.json" }}
+            - deps-
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: yarn build:${CIRCLE_BRANCH}
+      - run: yarn install --frozen-lockfile --production
+      - setup_remote_docker:
+          version: 20.10.11
+      - aws-ecr/build-and-push-image:
+          repo: << pipeline.parameters.repo >>
+          tag: << pipeline.parameters.tag >>
+          create-repo: true
+          checkout: false
+  deploy:
+    executor: docker-executor
+    steps:
+      - checkout
+      - create-app
+      - run: export BUILD_NUMBER=<< pipeline.parameters.tag >>
+      - slack/notify:
+          channel: 'gitops-ci'
+          event: pass
+          template: basic_success_2
+workflows:
+  build-and-deploy:
+    jobs:
+      - build:
+          context:
+            - ecr-<< pipeline.git.branch >>
+            - << pipeline.git.branch >>
+          filters:
+            branches:
+              only:
+                - main
+                - staging
+                - dev
+      - deploy:
+          context:
+            - common
+            - ecr-<< pipeline.git.branch >>
+            - << pipeline.git.branch >>
+          filters:
+            branches:
+              only:
+                - main
+                - staging
+                - dev
+          requires:
+            - build
+      - aws-ecs/deploy-service-update:
+          name: deploy
+          cluster-name: $ECS_CLUSTER
+          container-image-name-updates: 'container=room-night-service,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
+          family: room-night-service
+          context:
+            - common
+            - ecr-<< pipeline.git.branch >>
+            - << pipeline.git.branch >>
+          filters:
+            branches:
+              only:
+                - main
+                - dev
+          requires:
+            - build
+      - aws-ecs/deploy-service-update:
+          name: deploy-stg
+          cluster-name: $ECS_CLUSTER
+          container-image-name-updates: 'container=room-night-service-stg,image-and-tag=${AWS_ECR_ACCOUNT_URL}/<< pipeline.parameters.repo >>:<< pipeline.parameters.tag >>'
+          family: "room-night-service-stg"
+          context:
+            - common
+            - ecr-<< pipeline.git.branch >>
+            - << pipeline.git.branch >>
+          filters:
+            branches:
+              only:
+                - staging
+          requires:
+            - build
