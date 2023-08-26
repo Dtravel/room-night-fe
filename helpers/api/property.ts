@@ -144,6 +144,12 @@ export const getCancelPolicy = (
     params: { currency },
   }).then((res) => res.data);
 };
+export const getPropertyTransaction = (propertyId: string | number) => {
+  return api({
+    method: "get",
+    url: `/room-night/listing/${propertyId}`,
+  }).then((res) => res.data);
+};
 export const getHistoryTransactionBSC = (propertyContract: string) => {
   return axios
     .get(`https://api-testnet.bscscan.com/api`, {

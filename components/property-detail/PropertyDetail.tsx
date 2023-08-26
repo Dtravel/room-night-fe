@@ -49,7 +49,7 @@ const PropertyDetail: NextPage<Props> = ({ data, hostId, propertyId }) => {
   const [priceData, setPriceData] = useState<PriceReservation | null>(null)
   const [avgPrice, setAvgPrice] = useState<number>(0)
   const [avgPriceRoot, setAvgPriceRoot] = useState<number>(0)
-  const propertyContractData: any = (data?.propertyContracts || []).find((v: any) => !isEmpty(v.propertyContract) && isBSC(v.chainId))
+  // const propertyContractData: any = (data?.propertyContracts || []).find((v: any) => !isEmpty(v.propertyContract) && isBSC(v.chainId))
 
   useEffect(() => {
     setPmsPropertyId(data ? data.id.toString() : '')
@@ -231,7 +231,7 @@ const PropertyDetail: NextPage<Props> = ({ data, hostId, propertyId }) => {
             <PropertyReview pmsPropertyId={data?.pmsPropertyId} userId={data?.userId} />
           </div>
           <div id={'transactions'}>
-            <BookTransaction propertyContract={propertyContractData?.propertyContract || ''} />
+            <BookTransaction propertyId={propertyId} />
           </div>
           <div id={'policies'}>
             <HotelCancelPolicy

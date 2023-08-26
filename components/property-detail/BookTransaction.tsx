@@ -3,24 +3,28 @@ import React, { useEffect, useState } from 'react'
 import ReviewScrollHorizontal from '../common/ReviewScrollHorizontal'
 import { isEmpty } from '@dtravel/utils/common'
 import DetailCard from './DetailCard'
-import { getHistoryTransactionBSC } from '@dtravel/helpers/api/property'
+import { getHistoryTransactionBSC, getPropertyTransaction } from '@dtravel/helpers/api/property'
 import { useAppDispatch, useAppSelector } from '@dtravel/redux/hooks'
 import clsx from 'clsx'
 import BasicButton from '../ui/BasicButton'
 import Link from 'next/link'
 
 interface Props {
-  propertyContract: string
+  propertyId: string
 }
 // https://docs.bscscan.com/api-endpoints/accounts#get-a-list-of-normal-transactions-by-address
-const BookTransaction: NextPage<Props> = ({ propertyContract }) => {
+const BookTransaction: NextPage<Props> = ({ propertyId }) => {
   const dispatch = useAppDispatch()
   const [history, setHistory] = useState<any[]>([])
-  const addressContract = "0xfab34eeba8c1794651ad864c1b0f1f47f0e5e06a"
+  const [roomNightListing, setRoomNightListing] = useState<any>({})
   const fetchHistoryTransaction = async () => {
     try {
-      const res: any = await getHistoryTransactionBSC(addressContract)
-      if (!isEmpty(res?.result)) setHistory(res?.result)
+      const response: any = await getPropertyTransaction(propertyId)
+      if (response?.data?.room_night_token) {
+        setRoomNightListing(response?.data)
+        const res: any = await getHistoryTransactionBSC(response?.data?.room_night_token)
+        if (!isEmpty(res?.result)) setHistory(res?.result)
+      }
     } catch (error) { }
   }
   useEffect(() => {
@@ -61,7 +65,7 @@ const BookTransaction: NextPage<Props> = ({ propertyContract }) => {
               })}
             </ReviewScrollHorizontal>
             <div className={'mt-[32px] md:mt-[24px]'}>
-              <Link href={`https://testnet.bscscan.com/address/${addressContract}`} target="_blank" passHref>
+              <Link href={`https://testnet.bscscan.com/address/${roomNightListing?.room_night_token}`} target="_blank" passHref>
                 <BasicButton variant={'outlined'} clases={'w-full lg:w-auto'}>
                   Show more on bscscan
                 </BasicButton>
