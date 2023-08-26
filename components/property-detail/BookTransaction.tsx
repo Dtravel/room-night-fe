@@ -58,7 +58,7 @@ const BookTransaction: NextPage<Props> = ({ propertyId }) => {
                     </Link>
                     <div className='flex flex-col gap-2 items-start'>
                       <span className={'uppercase bg-forest-50 rounded-[16px] px-[10px] py-[2px] text-12-16 font-maison-neue-demi text-forest-700'}>transfer</span>
-                      <span className='text-16-20 font-inter-400 text-black'>{el?.value} BNB</span>
+                      {/* <span className='text-16-20 font-inter-400 text-black'>{el?.value} BNB</span> */}
                     </div>
                   </div>
                 )
