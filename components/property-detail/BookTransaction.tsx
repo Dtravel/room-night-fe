@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@dtravel/redux/hooks'
 import clsx from 'clsx'
 import BasicButton from '../ui/BasicButton'
 import Link from 'next/link'
+import moment from 'moment'
 
 interface Props {
   propertyId: string
@@ -59,6 +60,7 @@ const BookTransaction: NextPage<Props> = ({ propertyId }) => {
                     <div className='flex flex-col gap-2 items-start'>
                       <span className={'uppercase bg-forest-50 rounded-[16px] px-[10px] py-[2px] text-12-16 font-maison-neue-demi text-forest-700'}>transfer</span>
                       {/* <span className='text-16-20 font-inter-400 text-black'>{el?.value} BNB</span> */}
+                      <span className='text-14-18 font-inter-400 text-black'>{moment(el?.timeStamp, 'X').format("DD/MM/YYYY")}</span>
                     </div>
                   </div>
                 )
