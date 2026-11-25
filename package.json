@@ -45,7 +45,7 @@
     "https": "^1.0.0",
     "luxon": "^2.3.2",
     "mapbox-gl": "^2.8.2",
-    "moment": "^2.29.2",
+    "moment": "^2.31.0",
     "moment-timezone": "^0.5.37",
     "next": "^13.1.6",
     "next-images": "^1.8.4",
